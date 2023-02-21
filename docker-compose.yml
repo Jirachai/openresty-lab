@@ -1,0 +1,18 @@
+version: '3'
+services:
+  proxy:
+    image: openresty/openresty:alpine
+    restart: always
+    container_name: proxy
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d
+      - ./html:/var/www/html
+      - ./lua:/src/lua
+    ports:
+      - 8080:80
+
+  redis:
+    image: redis:alpine
+    container_name: reids
+    restart: always
+
